@@ -18,7 +18,7 @@ import {
 } from "three/webgpu";
 import { BugRig } from "threejs-easybugs";
 import { InstancedAnimatedMesh } from "threejs-instancedanimatedmesh";
-//import { CustomBehaviourExample } from "./CustomBehaviourExample";
+//import { CustomBehaviourExample } from "./CustomBehaviourExample"; //...
 
 export async function demo(
 	scene: Scene,
