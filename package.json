@@ -1,6 +1,6 @@
 {
 	"name": "threejs-easybugs",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"main": "dist/threejs-easybugs.js",
 	"module": "dist/threejs-easybugs.js",
 	"devDependencies": {
