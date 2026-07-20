@@ -12,6 +12,7 @@
 		"@types/three": "^0.185.1",
 		"three": "^0.185.1",
 		"three-mesh-bvh": "^0.9.11",
+		"threejs-instancedanimatedmesh": "^0.1.2",
 		"typescript": "^5.6.3",
 		"vite": "^8.1.4",
 		"vite-plugin-dts": "^5.0.3"

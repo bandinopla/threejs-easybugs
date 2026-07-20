@@ -13,6 +13,7 @@
         "@types/three": "^0.185.1",
         "three": "^0.185.1",
         "three-mesh-bvh": "^0.9.11",
+        "threejs-instancedanimatedmesh": "^0.1.2",
         "typescript": "^5.6.3",
         "vite": "^8.1.4",
         "vite-plugin-dts": "^5.0.3",
@@ -518,6 +519,8 @@
     "three": ["three@0.185.1", "", {}, "sha512-5aojFCXKwnjBRZvUnt3WFfEcvUJgkN5LlijRFN95hMy8WVkG4I0QNcJE+OuWvuJ0bOdStrbfXn0pkd6/QyiAlg=="],
 
     "three-mesh-bvh": ["three-mesh-bvh@0.9.11", "", { "peerDependencies": { "three": ">= 0.159.0" } }, "sha512-PtGT02vWRQiP6szrcorR1GEClhHSr/+O45pyH/cQ8sY+UOlicecuUVjAHmIsbIri3ZO/8WTWBq3h7227F/TVBw=="],
+
+    "threejs-instancedanimatedmesh": ["threejs-instancedanimatedmesh@0.1.2", "", { "peerDependencies": { "three": ">=0.125.0" } }, "sha512-KHKxeBIms/Fz9TuPDwYBMwguv5sKo6BYBrime/AX0oEq8S0kMAi7beJGQLfrCFkMc4HtqBfJ4zZKHXBGBiGw4g=="],
 
     "tinyglobby": ["tinyglobby@0.2.17", "", { "dependencies": { "fdir": "^6.5.0", "picomatch": "^4.0.4" } }, "sha512-wXR/dYpcqKmfWpEdZjiKJOwCNFndD0DMnrW/cYjVGttEkBfVgcLFHoNrlj47mjOVic9yyNu65alsgF4NQyTa2g=="],
 
