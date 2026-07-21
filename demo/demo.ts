@@ -220,6 +220,7 @@ export async function demo(
 			iterations: 13,
 			stepTransitionDuration: 0.1,
 			footMaxDistanceFromGoal: 0.01,
+			stepHeight: 0.5,
 		});
 
 		// **** this is how you set a random behaviour *** //

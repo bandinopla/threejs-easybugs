@@ -3,10 +3,15 @@ import { GroundStrategy, v } from "./GroundStrategy";
 import { GroundPosition } from "./GroundPosition";
 
 export class DomeGroundFinder extends GroundStrategy {
-	override worldPositionToGravityDirection(out: Vector3) {
-		return this.worldToRayOrigin(out, false)
-			.negate()
-			.transformDirection(this.raycastCage.matrixWorld);
+	override worldPositionToGravityDirection(
+		out: Vector3,
+		inCageSpace?: boolean,
+	) {
+		this.worldToRayOrigin(out, false).negate();
+
+		if (!inCageSpace) out.transformDirection(this.raycastCage.matrixWorld);
+
+		return out;
 	}
 
 	override randomRayPosition(

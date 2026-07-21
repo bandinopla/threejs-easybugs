@@ -3,6 +3,7 @@ import {
 	Bone,
 	BoxGeometry,
 	Intersection,
+	Matrix4,
 	Mesh,
 	MeshBasicMaterial,
 	MeshNormalMaterial,
@@ -19,6 +20,8 @@ import { GroundPosition } from "./ground-strategy/GroundPosition";
 const currentWPos = new Vector3();
 const goalWPos = new Vector3();
 const guideWPos = new Vector3();
+const gravityDir = new Vector3();
+const worldScale = new Vector3();
 
 export type GaitBone = {
 	bone: Bone;
@@ -86,7 +89,7 @@ export type BugIKLegsConfig = {
 	stepTransitionDuration?: number;
 
 	/**
-	 * How high the foot is lifted off the ground when . In local space of the rig.
+	 * How high the foot is lifted off the ground when . In local space of the body ( to account for the scale of the body, so 1 for a small body will be smaller than 1 for a big body )
 	 */
 	stepHeight?: number;
 
@@ -147,7 +150,7 @@ export class BugIKLegs {
 			gaitFunction: ikConfig.gaitFunction ?? basicGait,
 			iterations: ikConfig.iterations ?? 16,
 			stepTransitionDuration: ikConfig.stepTransitionDuration ?? 0.2,
-			stepHeight: ikConfig.stepHeight ?? 1,
+			stepHeight: ikConfig.stepHeight ?? 0,
 			debug: ikConfig.debug ?? false,
 		};
 
@@ -324,8 +327,16 @@ export class BugIKLegs {
 		let transitionProgress =
 			1 - this._transitionTime / this._ikConfig.stepTransitionDuration;
 
-		// for each ik goal...
+		//
+		// calcuate body's gravity in it's own local space so stepHeight is relative to the size of the body
+		//
+		ground.worldPositionToGravityDirection(
+			this.body.getWorldPosition(gravityDir),
+		);
+		this.body.getWorldScale(worldScale);
+		gravityDir.multiply(worldScale);
 
+		// for each ik goal...
 		for (let i = 0; i < feetIKGoals.length; i++) {
 			const ikGoalBone = feetIKGoals[i];
 
@@ -414,6 +425,13 @@ export class BugIKLegs {
 
 					// interpolates the current position to the target position
 					v.lerpVectors(currentWPos, goalWPos, transitionProgress);
+
+					// apply a small bump offset to simulate lifting the foot upwards
+					v.addScaledVector(
+						gravityDir,
+						-this._ikConfig.stepHeight *
+							Math.sin(Math.PI * transitionProgress),
+					);
 
 					if (transitionProgress >= 1) {
 						state.isMoving = false;

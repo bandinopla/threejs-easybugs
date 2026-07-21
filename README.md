@@ -76,6 +76,9 @@ bug.setupLegsIK({
 			iterations: 13, // how many the IK solver will run
 			stepTransitionDuration: 0.1, //seconds taken to a leg to move from pointA to B
 			footMaxDistanceFromGoal: 0.01, //distance the foot has to be from the goal to trigger a new step
+
+			
+			stepHeight: 1 // how high the foot will lift from the ground when moving from one place to the other. In LOCAL SPACE of the body
 		});
 
 // the IK config from above will create a total of 6 legs

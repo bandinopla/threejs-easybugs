@@ -6,8 +6,16 @@ const v = new Vector3();
 const down = new Vector3(0, -1, 0);
 
 export class BasicGroundFinder extends GroundStrategy {
-	override worldPositionToGravityDirection(out: Vector3) {
+	override worldPositionToGravityDirection(
+		out: Vector3,
+		inCageSpace?: boolean,
+	) {
 		out.copy(down);
+
+		if (!inCageSpace) {
+			out.transformDirection(this.raycastCage.matrixWorld);
+		}
+
 		return out;
 	}
 

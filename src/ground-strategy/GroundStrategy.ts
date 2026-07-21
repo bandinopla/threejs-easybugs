@@ -40,18 +40,16 @@ export abstract class GroundStrategy {
 	}
 
 	/**
-	 * returns the local direction of gravity in the current raycast's cage object local coordinate
-	 * @param out
-	 * @param atThisPosition
+	 *  given a point in world space, return a vector that represents the direction in which gravity is pulling that point.
+	 *  This vector points towards the ground.
+	 *
+	 * @param out the vector to store the result in.
+	 * @param inCageSpace if true, the vector will be in the local space of the raycast cage. Default to world space.
 	 */
-	getGravityDirection(out: Vector3, atThisWorldPosition?: Vector3): Vector3 {
-		return out.set(0, -1, 0);
-	}
-
-	/**
-	 *  given a point in world space, return a vector in world space that represents the direction in which gravity is pulling that point.
-	 */
-	worldPositionToGravityDirection(out: Vector3): Vector3 {
+	worldPositionToGravityDirection(
+		out: Vector3,
+		inCageSpace = false,
+	): Vector3 {
 		throw new Error(`Not implemented`);
 	}
 
